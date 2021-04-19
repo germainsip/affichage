@@ -30,6 +30,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class MenuController implements Initializable {
@@ -87,18 +89,27 @@ public class MenuController implements Initializable {
         Workbook workbook = WorkbookFactory.create(is);
         Sheet sheet = workbook.getSheetAt(0);
 
-
+        String dateInFrench = null;
         //Gestion de la date d'examen
         if (!(dateExam.getValue() ==null)){
             java.sql.Date datePick = java.sql.Date.valueOf(dateExam.getValue());
             stamp = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.FRANCE).format(datePick);
             String stamp2 = SimpleDateFormat.getDateInstance(
                     SimpleDateFormat.LONG, Locale.FRANCE).format(new Date());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(datePick);
+            LocalDate localDate=LocalDate.of(2016,01,01);
+
+            //Day of week and month in French
+            dateInFrench=localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy",Locale.FRENCH));
+            System.out.println("'2016-01-01' in French: "+dateInFrench);
             Cell date = sheet.getRow(6).getCell(3);
-            date.setCellValue(stamp2);
+            date.setCellValue(dateInFrench);
 
         } else {
             ok = false;
+            LocalDate localDate=LocalDate.of(2016,01,01);
+            dateInFrench=localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy"));
         }
 
         //Ecriture des candidats
@@ -117,11 +128,11 @@ public class MenuController implements Initializable {
             outputStream.close();
 
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setContentText("Affiche enregistrée");
+            alert.setContentText("Affiche enregistrée"+dateInFrench);
             alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setContentText("Veuillez renseigner une date d'examen");
+            alert.setContentText("Veuillez renseigner une date d'examen"+dateInFrench);
             alert.showAndWait();
         }
         workbook.close();

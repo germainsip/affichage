@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Main extends Application {
@@ -20,6 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        Locale.setDefault(Locale.FRENCH);
         //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui/menu.fxml")));
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui/menu.fxml")));
         Scene scene = new Scene(root);

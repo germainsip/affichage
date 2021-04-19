@@ -13,6 +13,7 @@ repositories {
 }
 
 javafx {
+    version = "16"
     modules = ["javafx.controls","javafx.fxml"]
 }
 application {
@@ -23,12 +24,12 @@ application {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    compile 'org.apache.poi:poi-ooxml:5.0.0'
-    compile 'com.jfoenix:jfoenix:9.0.10'
+    implementation 'org.apache.poi:poi-ooxml:5.0.0'
+    implementation 'com.jfoenix:jfoenix:9.0.10'
 
-    compile 'org.kordamp.ikonli:ikonli-core:12.2.0'
-    compile 'org.kordamp.ikonli:ikonli-javafx:12.2.0'
-    compile 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.2.0'
+    implementation 'org.kordamp.ikonli:ikonli-core:12.2.0'
+    implementation 'org.kordamp.ikonli:ikonli-javafx:12.2.0'
+    implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.2.0'
 
 }
 
