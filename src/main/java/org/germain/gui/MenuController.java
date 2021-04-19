@@ -15,11 +15,13 @@ import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
+import javafx.stage.DirectoryChooser;
 import javafx.util.Callback;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.germain.Main;
 import org.germain.model.Candidat;
 import org.germain.tools.ModelLoader;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -123,7 +125,10 @@ public class MenuController implements Initializable {
 
         //Sauvegarde du fichier
         if (ok){
-            File fichier = new File("output.xlsx");
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            String dossier = directoryChooser.showDialog(Main.getPrimaryStage()).toString();
+
+            File fichier = new File(dossier+"/output.xlsx");
             FileOutputStream outputStream = new FileOutputStream(fichier);
             adresseEnrg =fichier.getAbsolutePath();
             workbook.write(outputStream);
