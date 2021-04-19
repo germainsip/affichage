@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+group 'org.germain'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "16"
+    modules = ["javafx.controls","javafx.fxml"]
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.apache.poi:poi-ooxml:5.0.0'
+
+    implementation 'com.jfoenix:jfoenix:9.0.10'
+
+    implementation 'org.controlsfx:controlsfx:11.1.0'
+
+    implementation 'org.kordamp.ikonli:ikonli-core:12.2.0'
+    implementation 'org.kordamp.ikonli:ikonli-javafx:12.2.0'
+    implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.2.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+mainClassName = "org.germain.Main"
