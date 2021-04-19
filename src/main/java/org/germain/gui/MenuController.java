@@ -30,10 +30,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MenuController implements Initializable {
     public JFXButton generate;
@@ -95,8 +92,10 @@ public class MenuController implements Initializable {
         if (!(dateExam.getValue() ==null)){
             java.sql.Date datePick = java.sql.Date.valueOf(dateExam.getValue());
             stamp = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.FRANCE).format(datePick);
+            String stamp2 = SimpleDateFormat.getDateInstance(
+                    SimpleDateFormat.LONG, Locale.FRANCE).format(new Date());
             Cell date = sheet.getRow(6).getCell(3);
-            date.setCellValue(stamp);
+            date.setCellValue(stamp2);
 
         } else {
             ok = false;
@@ -147,7 +146,9 @@ public class MenuController implements Initializable {
         System.out.println("En minutes = " + timeNum);
         java.sql.Date date = java.sql.Date.valueOf(dateExam.getValue());
         String stamp = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.FRANCE).format(date);
-        System.out.println(stamp);
+        String stamp2 = SimpleDateFormat.getDateInstance(
+                SimpleDateFormat.LONG, Locale.FRANCE).format(new Date());
+        System.out.println(stamp2);
 
 
         return timeNum;
