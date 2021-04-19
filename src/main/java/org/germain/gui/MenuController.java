@@ -82,6 +82,7 @@ public class MenuController implements Initializable {
         List<String> list = new ArrayList<>();
         String stamp;
         String adresseEnrg = null;
+        String msg = "";
         //Récup des candidats
         for (Candidat candidat : this.list) {
             list.add(candidat.getLastName() + " " + candidat.getFirstName());
@@ -112,8 +113,9 @@ public class MenuController implements Initializable {
 
         } else {
             ok = false;
-            LocalDate localDate=LocalDate.of(2016,01,01);
-            dateInFrench=localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy",Locale.FRENCH));
+            msg += "Veuillez renseigner une date d'examen \n";
+            //LocalDate localDate=LocalDate.of(2016,01,01);
+            //dateInFrench=localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy",Locale.FRENCH));
         }
 
         //Ecriture des candidats
@@ -141,7 +143,7 @@ public class MenuController implements Initializable {
             alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setContentText("Veuillez renseigner une date d'examen");
+            alert.setContentText(msg);
             alert.showAndWait();
         }
         workbook.close();
