@@ -24,6 +24,7 @@ import org.germain.model.Candidat;
 import org.germain.tools.ModelLoader;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,7 +78,7 @@ public class MenuController implements Initializable {
         boolean ok = true;
         List<String> list = new ArrayList<>();
         String stamp;
-
+        String adresseEnrg = null;
         //Récup des candidats
         for (Candidat candidat : this.list) {
             list.add(candidat.getLastName() + " " + candidat.getFirstName());
@@ -104,12 +105,12 @@ public class MenuController implements Initializable {
             dateInFrench=localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy",Locale.FRENCH));
             System.out.println("'2016-01-01' in French: "+dateInFrench);
             Cell date = sheet.getRow(6).getCell(3);
-            date.setCellValue(dateInFrench);
+            date.setCellValue(stamp);
 
         } else {
             ok = false;
             LocalDate localDate=LocalDate.of(2016,01,01);
-            dateInFrench=localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy"));
+            dateInFrench=localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy",Locale.FRENCH));
         }
 
         //Ecriture des candidats
@@ -122,17 +123,19 @@ public class MenuController implements Initializable {
 
         //Sauvegarde du fichier
         if (ok){
-            FileOutputStream outputStream = new FileOutputStream("output.xlsx");
+            File fichier = new File("output.xlsx");
+            FileOutputStream outputStream = new FileOutputStream(fichier);
+            adresseEnrg =fichier.getAbsolutePath();
             workbook.write(outputStream);
 
             outputStream.close();
 
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setContentText("Affiche enregistrée"+dateInFrench);
+            alert.setContentText("Affiche enregistrée à \n"+adresseEnrg);
             alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setContentText("Veuillez renseigner une date d'examen"+dateInFrench);
+            alert.setContentText("Veuillez renseigner une date d'examen");
             alert.showAndWait();
         }
         workbook.close();
