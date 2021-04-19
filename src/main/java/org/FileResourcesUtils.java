@@ -30,7 +30,7 @@ public class FileResourcesUtils {
         }
 
         // get a file from the resources folder
-        // works everywhere, IDEA, unit test and JAR file.
+        // works everywhere, IDEA, unit org.germain.org.test and JAR file.
         private InputStream getFileFromResourceAsStream(String fileName) {
 
             // The class loader that loaded the class

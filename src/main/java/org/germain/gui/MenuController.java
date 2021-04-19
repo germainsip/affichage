@@ -23,6 +23,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.germain.Main;
 import org.germain.model.Candidat;
+import org.germain.tools.HeureExam;
 import org.germain.tools.ModelLoader;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -163,11 +164,9 @@ public class MenuController implements Initializable {
         time += minute.getSelectionModel().getSelectedItem();
         System.out.println(time);
         System.out.println("En minutes = " + timeNum);
-        java.sql.Date date = java.sql.Date.valueOf(dateExam.getValue());
-        String stamp = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.FRANCE).format(date);
-        String stamp2 = SimpleDateFormat.getDateInstance(
-                SimpleDateFormat.LONG, Locale.FRANCE).format(new Date());
-        System.out.println(stamp2);
+
+        System.out.println(new HeureExam(Integer.parseInt(heure.getSelectionModel().getSelectedItem()),Integer.parseInt(minute.getSelectionModel().getSelectedItem())).heureExamList(4));
+
 
 
         return timeNum;

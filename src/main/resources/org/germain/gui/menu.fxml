@@ -37,7 +37,7 @@
                 <Menu mnemonicParsing="false" text="A l'aide">
                   <items>
                     <MenuItem fx:id="about" mnemonicParsing="false" onAction="#aboutLaunch" text="A propos" />
-                        <MenuItem fx:id="testMod" mnemonicParsing="false" onAction="#loadCells" text="test model" />
+                        <MenuItem fx:id="testMod" mnemonicParsing="false" onAction="#loadCells" text="org.germain.org.test model" />
                         <MenuItem fx:id="testMod1" mnemonicParsing="false" onAction="#loadFakeCandidats" text="ajout de fake" />
                   </items>
                 </Menu>
