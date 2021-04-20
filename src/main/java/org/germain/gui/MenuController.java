@@ -336,6 +336,11 @@ public class MenuController implements Initializable {
         list.add(new Candidat("Isabella", "Johnson"));
         list.add(new Candidat("Ethan", "Williams"));
         list.add(new Candidat("Michael", "Brown"));
+
+        nomJuryField1.setText("bibi");
+        nomJuryField2.setText("Polux");
+        LocalDate loc = LocalDate.now();
+        dateExam.setValue(loc);
     }
 
     public void aboutLaunch(ActionEvent actionEvent) {
