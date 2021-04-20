@@ -10,10 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.DirectoryChooser;
 import javafx.util.Callback;
@@ -37,6 +34,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import static javafx.scene.input.KeyCode.ENTER;
 
 public class MenuController implements Initializable {
     public JFXButton generate;
@@ -68,6 +67,7 @@ public class MenuController implements Initializable {
 
     public ObservableList<Candidat> list = FXCollections.observableArrayList();
     private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/x-java-serialized-object");
+
 
 
 
@@ -126,6 +126,14 @@ public class MenuController implements Initializable {
 
         is.close();
 
+        //Ecriture des Jurys
+        Cell jury1 = sheet.getRow(8).getCell(3);
+        Cell jury2 = sheet.getRow(8).getCell(5);
+
+        jury1.setCellValue(nomJuryField1.getText());
+        jury2.setCellValue(nomJuryField2.getText());
+
+
         //Sauvegarde du fichier
         if (ok){
             DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -177,6 +185,15 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //On charge le tableau
+        prenomField.setOnKeyPressed(e -> {
+            if(e.getCode() == ENTER){
+                System.out.println("entré");
+                Candidat candidat = new Candidat(prenomField.getText(), nomField.getText());
+                prenomField.clear();
+                nomField.clear();
+                list.add(candidat);
+            }
+        });
         initTableau();
 
         initTimePicker();
@@ -318,6 +335,8 @@ public class MenuController implements Initializable {
      */
     public void handleAjout(ActionEvent actionEvent) {
         Candidat candidat = new Candidat(prenomField.getText(), nomField.getText());
+        prenomField.clear();
+        nomField.clear();
         list.add(candidat);
     }
 
@@ -358,4 +377,6 @@ public class MenuController implements Initializable {
         );
         alert.showAndWait();
     }
+
+
 }

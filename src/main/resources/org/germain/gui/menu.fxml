@@ -78,7 +78,7 @@
                                     <HBox alignment="CENTER" spacing="20.0">
                                        <children>
                                           <TextField fx:id="nomField" prefHeight="27.0" prefWidth="224.0" promptText="NOM" />
-                                          <TextField fx:id="prenomField" prefHeight="27.0" prefWidth="187.0" promptText="Prénom" />
+                                          <TextField fx:id="prenomField"  prefHeight="27.0" prefWidth="187.0" promptText="Prénom" />
                                           <JFXButton onAction="#handleAjout" style="-fx-background-color: green;" text="Ajouter un candidat" textFill="WHITE">
                                              <font>
                                                 <Font size="12.0" />
