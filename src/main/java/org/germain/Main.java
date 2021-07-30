@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -28,6 +29,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui/menu.fxml")));
         Scene scene = new Scene(root);
        // primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.getIcons().add(new Image("icon.png"));
+
        stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
